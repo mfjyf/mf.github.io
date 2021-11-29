@@ -1,0 +1,136 @@
+.abox2{
+    height: 100%;
+    width: 100%;
+    background: url(../img/bg.png);
+    position: absolute;
+    transition: opacity 1s;
+}
+.abox2 img:nth-child(1){
+    z-index: 2;
+    width: 300px;
+    height: 500px;
+    position: absolute;
+    left: 37.5px;
+}
+.abox2 img:nth-child(2){
+    z-index: 2;
+    width: 73px;
+    height: 73px;
+    position: absolute;
+    left: 123px;
+    top: 134px;
+    animation: zhuan 1s infinite linear;
+}
+@keyframes zhuan {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.abox2 img:nth-child(3){
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 103px;
+    top: 150px;
+    animation: zhuan 1s infinite linear 0s;
+}
+.abox2 img:nth-child(4){
+    width: 375px;
+    height: 200px;
+    position: absolute;
+    top: 10px;
+}
+/*字框*/
+.abox2 img:nth-child(5){
+    width: 375px;
+    height: 300px;
+    position: absolute;
+    top: 220px;
+}
+/*第一句话*/
+.abox2 img:nth-child(6){
+    z-index: 2;
+    width: 180px;
+    height: 50px;
+    position: absolute;
+    top: 240px;
+    left: 95px;
+    opacity: 0;
+}
+.abox2 img:nth-child(7){
+    z-index: 2;
+    width: 180px;
+    height: 40px;
+    position: absolute;
+    top: 280px;
+    left: 95px;
+    opacity: 0;
+}
+.abox2 img:nth-child(8){
+    z-index: 2;
+    width: 180px;
+    height: 40px;
+    position: absolute;
+    top: 320px;
+    left: 95px;
+    opacity: 0;
+}
+.abox2 img:nth-child(9){
+    z-index: 2;
+    width: 120px;
+    height: 30px;
+    position: absolute;
+    top: 360px;
+    left: 125px;
+    opacity: 0;
+}
+.abox2 img:nth-child(10){
+    z-index: 2;
+    width: 180px;
+    height: 40px;
+    position: absolute;
+    top: 390px;
+    left: 95px;
+    opacity: 0;
+}
+.abox2 img:nth-child(11){
+    z-index: 2;
+    width: 120px;
+    height: 35px;
+    position: absolute;
+    top: 430px;
+    left: 125px;
+    opacity: 0;
+}
+
+.fontactive0{
+    animation: fade 1s linear 1s forwards;
+}
+.fontactive1{
+    animation: fade 1.5s linear 1.5s forwards;
+}
+.fontactive2{
+    animation: fade 1.5s linear 2s forwards;
+}
+.fontactive3{
+    animation: fade 1.5s linear 2.5s forwards;
+}
+.fontactive4{
+    animation: fade 1.5s linear 3s forwards;
+}
+.fontactive5{
+    animation: fade 1.5s linear 3.5s forwards;
+}
+@keyframes fade {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.abox2 img:nth-child(12){
+    z-index: 2;
+    width: 375px;
+    height: 200px;
+    position: absolute;
+    bottom: 0px;
+}

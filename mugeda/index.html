@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/box1.css">
+    <link rel="stylesheet" href="css/box2.css">
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        #bigbox{
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        .active{
+            z-index: -1;
+            opacity: 0;
+        }
+        /*************************************/
+   
+        .abox3{
+            height: 100%;
+            width: 100%;
+            background-color: blue;
+            position: absolute;
+            transition: opacity 1s;
+        }
+        .abox4{
+            height: 100%;
+            width: 100%;
+            background-color: red;
+            position: absolute;
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="bigbox">
+        <div class="abox1">
+            <img src="img/picture.png">
+            <img src="img/logoing.png">
+            <img src="img/点.png">
+            <img src="img/点.png">
+            <img src="img/点.png">
+        </div>
+        <div class="box abox2 active">
+            <img src="img/拖拉机.png">
+            <img src="img/左轮.png">
+            <img src="img/右轮.png">
+            <img src="img/拖拉机背景.png">
+            <img src="img/字框.png">
+            <img src="img/第一句.png" class="font">
+            <img src="img/第二句.png" class="font">
+            <img src="img/第三句.png" class="font">
+            <img src="img/第四句.png" class="font">
+            <img src="img/第五句.png" class="font">
+            <img src="img/第六句.png" class="font">
+            <img src="img/番薯和阴影.png">
+        </div> 
+        <div class="box abox3 active"></div>
+        <div class="box abox4 active"></div>
+    </div>
+
+    <script>
+        var pageNum = 1;
+        var pageTotal = 4;
+        var startY = 0,endY = 0,moveY = 0;
+
+        var boxs = document.getElementsByClassName("box");
+        for(var i = 0;i < boxs.length;i++){
+            boxs[i].addEventListener('touchstart',function(e){
+                startY = e.targetTouches[0].pageY;
+                console.log(startY)
+            },false)
+
+            boxs[i].addEventListener('touchmove',function(e){
+                e.preventDefault();
+                console.log(e.targetTouches[0].pageY)
+                endY = e.targetTouches[0].pageY
+            },false)
+
+            boxs[i].addEventListener('touchend',function(e){
+                moveY = startY - endY;
+                console.log(moveY);
+                if(!(moveY == startY)){
+                    if(moveY > 120){
+                        console.log('下一页')
+                        document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
+                        if(!(pageNum >= pageTotal)){
+                            pageNum++;
+                        }
+                        document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
+                    }
+                }else{
+                    return;
+                }
+                startY = 0;
+                endY = 0;
+                moveY = 0;
+            },false)
+        }
+
+
+        // document.getElementById("bigbox").addEventListener('touchstart',function(e){
+        //     startY = e.targetTouches[0].pageY;
+        //     console.log(startY)
+        // },false)
+
+        // document.getElementById("bigbox").addEventListener('touchmove',function(e){
+        //     // e.preventDefault();
+        //     console.log(e.targetTouches[0].pageY)
+        //     endY = e.targetTouches[0].pageY
+        // },false)
+
+        // document.getElementById("bigbox").addEventListener('touchend',function(e){
+        //     moveY = startY - endY;
+        //     console.log(moveY);
+        //     if(!(moveY == startY)){
+        //         if(moveY > 120){
+        //             console.log('下一页')
+        //             document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
+        //             if(!(pageNum >= pageTotal)){
+        //                 pageNum++;
+        //             }
+        //             document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
+        //         }
+        //     }else{
+        //         return;
+        //     }
+        //     startY = 0;
+        //     endY = 0;
+        //     moveY = 0;
+        // },false)
+        
+        setTimeout(function(){
+            document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
+            var fonts = document.getElementsByClassName('font');
+            for(var i = 0;i < fonts.length;i++){
+                fonts[i].classList.add('fontactive' + i);
+            }
+            if(!(pageNum >= pageTotal)){
+                pageNum++;
+            }
+            document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
+        }, 3000)
+    </script>
+
+</body>
+</html>
