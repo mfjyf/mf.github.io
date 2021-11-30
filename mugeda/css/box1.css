@@ -1,0 +1,56 @@
+.abox1{
+    height: 100%;
+    width: 100%;
+    background: url(../img/bg.png);
+    position: absolute;
+    transition: opacity 1s;
+}
+.abox1 img:nth-child(1){
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 233.5px;
+    left: 87.5px;
+}
+.abox1 img:nth-child(2){
+    width: 180px;
+    height: 40px;
+    position: absolute;
+    top: 425.5px;
+    left: 83.5px;
+}
+.abox1 img:nth-child(3){
+    position: absolute;
+    top: 430.5px;
+    left: 253.5px;
+}
+.abox1 img:nth-child(4){
+    position: absolute;
+    top: 430.5px;
+    left: 268.5px;
+    animation-name: loading;   
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.abox1 img:nth-child(5){
+    position: absolute;
+    top: 430.5px;
+    left: 283.5px;
+    animation-name: loading2;   
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+@keyframes loading {
+    0% {opacity: 1;}
+    25% {opacity: 1;}
+    50% {opacity: 1;}
+    75% {opacity: 1;}
+    100% {opacity: 0;}
+}
+@keyframes loading2 {
+    0% {opacity: 0;}
+    25% {opacity: 1;}
+    50% {opacity: 1;}
+    75% {opacity: 1;}
+    100% {opacity: 0;}
+}
