@@ -1,0 +1,82 @@
+.abox3{
+    height: 100%;
+    width: 100%;
+    background-image: url(../img/bg.png);
+    position: absolute;
+    transition: opacity 1s;
+}
+.abox3 img:nth-child(1){
+    width: 375px;
+    height: auto;
+    position: absolute;
+    overflow: hidden;
+    right: -100%;
+}
+.toleft0{
+    animation: left 0.8s linear forwards;
+}
+@keyframes left {
+    0% {right: -100%;}
+    100% {right: 0px;}
+}
+.abox3 img:nth-child(2){
+    position: absolute;
+    width: 200px;
+    height: 160px;
+    opacity: 0;
+}
+.toleft1{
+    animation: font 1s linear 1.5s forwards;
+}
+@keyframes font {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+.abox3 img:nth-child(3){
+    position: absolute;
+    width: 375px;
+    height: 385px;
+    bottom: 0px;
+    overflow: hidden;
+    left: -100%;
+}
+.toleft2{
+    animation: right 0.8s linear 2.5s forwards;
+}
+@keyframes right {
+    0% {left: -100%;}
+    100% {left: 0px;}
+}
+.abox3 img:nth-child(4){
+    position: absolute;
+    width: 200px;
+    height: 160px;
+    left: 160px;
+    top: 390px;
+    opacity: 0;
+}
+.toleft3{
+    animation: font 1s linear 3.5s forwards;
+}
+.v1{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    z-index: 5;
+    color: red;
+    bottom: 25px;
+    left: 172.5px;
+    opacity: 0;
+}
+.v2{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    z-index: 5;
+    color: red;
+    bottom: 50px;
+    left: 172.5px;
+    opacity: 0;
+}

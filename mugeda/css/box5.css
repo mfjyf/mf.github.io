@@ -1,0 +1,51 @@
+.abox5 {
+    height: 100%;
+    width: 100%;
+    background-image: url(../img/bg.png);
+    position: absolute;
+    transition: opacity 1s;
+}
+.abox5 #buttons{
+    position: absolute;
+    height: 600px;
+    width: 375px;
+    background-image: url(../img/计算机.png);
+    background-size: 375px 600px;
+    top: 60px;
+}
+.abox5 table{
+    position: absolute;
+    width: 355px;
+    height: 350px;
+    background: white;
+    left: 9px;
+    top: 210px;
+    border-collapse: collapse;
+}
+.abox5 table td{
+    border: 2px solid black;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+.abox5 .special{
+    background: #edb900;
+}
+.abox5hoveractive{
+    background: #ada8a5;
+}
+.abox5 #panel{
+    position: absolute;
+    top: 50px;
+    width: 355px;
+    height: 200px;
+    margin: auto;
+    z-index: 5;
+}
+
+
+#panel p{
+    color: white;
+}
+
+

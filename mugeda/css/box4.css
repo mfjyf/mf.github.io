@@ -1,0 +1,122 @@
+.abox4 {
+    height: 100%;
+    width: 100%;
+    background-image: url(../img/bg.png);
+    position: absolute;
+    transition: opacity 1s;
+}
+.abox4 img:nth-child(1){
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    top: 80px;
+    left: 75px;
+}
+.abox4 img:nth-child(2){
+    position: absolute;
+    width: 160px;
+    height: 130px;
+    top: 230px;
+    /* left: 45px; */
+    left: -100%;
+    overflow: hidden;
+    
+}
+.box4active0{
+    animation: rightbox4one 0.8s linear forwards;
+}
+@keyframes rightbox4one {
+    0% {left:-100%;}
+    100% {left: 45px;}
+}
+
+.abox4 img:nth-child(3){
+    position: absolute;
+    width: 200px;
+    height: 120px;
+    top: 240px;
+    /* left: 105px; */
+    left: 100%;
+    z-index: 5;
+}
+.box4active1{
+    animation: rightbox4two 0.8s linear 0.8s forwards;
+}
+@keyframes rightbox4two {
+    0% {left:100%;}
+    100% {left: 105px;}
+}
+.abox4 img:nth-child(4){
+    position: absolute;
+    width: 250px;
+    height: 310px;
+    /* top: 30px; */
+    top: -100%;
+    left: 55px;
+}
+.box4active2{
+    animation: rightbox4three 0.8s linear 1.6s forwards;
+}
+@keyframes rightbox4three {
+    0% {top:-100%;}
+    100% {top: 30px;}
+}
+.abox4 img:nth-child(5){
+    position: absolute;
+    width: 280px;
+    top: 350px;
+    left: 55px;
+    opacity: 0;
+}
+.box4active3{
+    animation: rightbox4four 1s linear 2.4s forwards;
+}
+@keyframes rightbox4four {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.abox4 form{
+    opacity: 0;
+}
+#inputtext{
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    font-family: 楷体;
+    font-size: 20px;
+    color: rgb(170, 170, 170);
+    border: 2px black solid;
+    border-radius: 10px;
+    box-shadow: 5px 10px rgb(228, 228, 228);
+    top: 500px;
+    left: 55px;
+}
+.box4active4{
+    animation: rightbox4four 1s linear 3.2s forwards;
+}
+.abox4 select{
+    list-style-type: none;
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    border: 2px black solid;
+    border-radius: 10px;
+    font-family: 楷体;
+    font-size: 20px;
+    color: rgb(170, 170, 170);
+    top: 500px;
+    left: 200px;
+    box-shadow: 5px 10px rgb(228, 228, 228);
+}
+.abox4 img:last-child{
+    position: absolute;
+    width: 280px;
+    height: 60px;
+    top: 560px;
+    left: 50px;
+    opacity: 0;
+}
+.box4active5{
+    animation: rightbox4four 1s linear 4s forwards;
+}
