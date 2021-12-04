@@ -96,34 +96,39 @@
 
         <div class="box abox5 active">
             <div id="panel">
-                <!-- <p>请点击按键</p>
-                <p>开始计算</p> -->
+                <p id="jp">请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算</p>
+                <p id="source"></p>
             </div>
             <div id="buttons">
                 <table>
                     <tr>
-                        <td class="bean" onclick="beanbackground(this)">大豆</td>
-                        <td class="bean" onclick="beanbackground(this)">绿豆</td>
-                        <td class="bean" onclick="beanbackground(this)">红豆</td>
-                        <td class="special" onclick="beanbackground2(this)">AC</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">大豆</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">绿豆</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">红豆</td>
+                        <td class="special" onclick="rm(this)">AC</td>
                     </tr>
                     <tr>
-                        <td class="bean" onclick="beanbackground(this)">稻子</td>
-                        <td class="bean" onclick="beanbackground(this)">玉米</td>
-                        <td class="bean" onclick="beanbackground(this)">黑豆</td>
-                        <td class="special" onclick="beanbackground2(this)">+</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">稻子</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">玉米</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">黑豆</td>
+                        <td class="special" value="+" onclick="beanbackground2(this)">+</td>
                     </tr>
                     <tr>
-                        <td class="bean" onclick="beanbackground(this)">素食</td>
-                        <td class="bean" onclick="beanbackground(this)">米粉</td>
-                        <td class="bean" onclick="beanbackground(this)">煎饼</td>
-                        <td class="special" onclick="beanbackground2(this)">=</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">素食</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">米粉</td>
+                        <td class="bean" value="100" onclick="beanbackground(this)">煎饼</td>
+                        <td class="special" onclick="dy(this)"><span id="eq">=</span></td>
                     </tr>
                 </table>
             </div>
         </div>
 
+        <!--弹出层-->
+        <div id='newdiv'>
+            <p></p>
+        </div>
     </div>
+    <div id="fade" onclick="prepage()"></div>
 
     <script>
         var pageNum = 1;
@@ -208,26 +213,6 @@
             
 
         }
-
-
-        function toNext(){
-            document.getElementsByClassName('abox4')[0].classList.add('active');
-            document.getElementsByClassName('abox5')[0].classList.remove('active');
-        }
-
-
-        function beanbackground(e){
-            e.classList.add('abox5hoveractive')
-        }
-        function beanbackground2(e){
-            e.classList.remove('special')
-            e.classList.add('abox5hoveractive')
-            setTimeout(() => {
-                e.classList.remove('abox5hoveractive')
-                e.classList.add('special')
-            }, 200);
-          
-        }
         setTimeout(function () {
             document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
             var fonts = document.getElementsByClassName('font');
@@ -242,7 +227,80 @@
                 pageNum++;
             }
             document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
-        }, 1000)
+        }, 500)
+
+
+        //第四页
+        function toNext(){
+            document.getElementsByClassName('abox4')[0].classList.add('active');
+            document.getElementsByClassName('abox5')[0].classList.remove('active');
+        }
+
+        var values;
+        function beanbackground(e){
+            // alert('value：' + e.attributes['value'].nodeValue);
+            if(jp.innerHTML == '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算'){
+                jp.innerHTML = '';
+            }
+            jp.innerHTML += e.attributes['value'].nodeValue;
+            
+            e.classList.add('abox5hoveractive')
+            e.attributes['value'].nodeValue='';
+        }
+        function beanbackground2(e){
+            jp.innerHTML += e.attributes['value'].nodeValue;
+
+            //样式变化
+            e.classList.remove('special')
+            e.classList.add('abox5hoveractive')
+            setTimeout(() => {
+                e.classList.remove('abox5hoveractive')
+                e.classList.add('special')
+            }, 200);
+        }
+
+
+        // jg.innerHTML = eval(jg.innerHTML);
+        function dy(){
+            if(eq.innerHTML == '='){
+                if(eval(jp.innerHTML) >= 500){
+                    source.innerHTML = '优';
+                }else if(eval(jp.innerHTML) >= 200){
+                    source.innerHTML = '良';
+                }else{
+                    source.innerHTML = '差';
+                }
+                eq.innerHTML = '我的健康报告';
+                jp.innerHTML = jp.innerHTML + '=' + eval(jp.innerHTML);
+                
+            }else{
+                document.getElementById('newdiv').style.display = 'block';
+                document.getElementById('newdiv').classList.add('newdivactive')
+                document.getElementById('fade').style.display = 'block';
+                document.getElementById('fade').classList.add('newdivactive2')
+            }
+        }
+        //出现弹出层后点击任何位置返回上一页
+        function prepage(){
+            document.getElementById('newdiv').style.display = 'none';
+            document.getElementById('newdiv').classList.remove('newdivactive')
+            document.getElementById('fade').style.display = 'none';
+            document.getElementById('fade').classList.remove('newdivactive2')
+            document.getElementsByClassName('abox5')[0].classList.add('active');
+            document.getElementsByClassName('abox4')[0].classList.remove('active');
+        }
+
+        function rm(){
+            jp.innerHTML = '';
+            source.innerHTML = '';
+            var beans = document.getElementsByClassName('bean');
+            for(var i = 0;i < beans.length;i++){
+                beans[i].classList.remove('abox5hoveractive');
+                beans[i].setAttribute('value',100);
+            }
+
+           
+        }
     </script>
 
 </body>

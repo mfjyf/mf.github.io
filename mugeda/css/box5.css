@@ -23,12 +23,16 @@
     border-collapse: collapse;
 }
 .abox5 table td{
+    width: 87px;
+    height: 116px;
     border: 2px solid black;
     font-size: 25px;
     font-weight: bold;
     text-align: center;
 }
 .abox5 .special{
+    width: 90px;
+    height: 116px;
     background: #edb900;
 }
 .abox5hoveractive{
@@ -44,8 +48,56 @@
 }
 
 
-#panel p{
-    color: white;
+#jp{
+    position: absolute;
+    top: 150px;
+    right: 0px;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(229, 229, 231);
 }
-
-
+#source{
+    position: absolute;
+    top: 180px;
+    right: 0px;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(229, 229, 231);
+}
+#newdiv{
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 12%;
+    width: 280px;
+    height: 375px;
+    background: url(../img/弹出框.png);
+    background-size: 280px 375px;
+    z-index: -100;
+    opacity: 0;
+}
+.newdivactive{
+    animation: newdivfade 0.5s forwards;
+}
+@keyframes newdivfade {
+    0%{opacity: 0;}
+    100%{opacity: 1;z-index: 100;}
+}
+#fade {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: -100;
+    opacity: 0.5;
+}
+.newdivactive2{
+    animation: newdivfade2 0.5s forwards;
+}
+@keyframes newdivfade2 {
+    0%{z-index: -100;}
+    100%{z-index: 99;}
+}
