@@ -1,0 +1,33 @@
+#newdiv p:nth-child(1){
+    position: absolute;
+    top: 93px;
+    left: 120px;
+    font-weight: bold;
+}
+#newdiv p:nth-child(2){
+    position: absolute;
+    top: 117px;
+    left: 120px;
+    font-weight: bold;
+}
+#newdiv p:nth-child(3){
+    position: absolute;
+    top: 140px;
+    left: 120px;
+    font-weight: bold;
+}
+#newdiv p:nth-child(4){
+    position: absolute;
+    top: 190px;
+    left: 130px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#newdiv span{
+    position: absolute;
+    top: 215px;
+    left: 68px;
+    width: 150px;
+    height: 110px;
+    font-weight: bold;
+}

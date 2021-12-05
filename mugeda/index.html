@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/box3.css">
     <link rel="stylesheet" href="css/box4.css">
     <link rel="stylesheet" href="css/box5.css">
+    <link rel="stylesheet" href="css/newdiv.css">
     <style>
         * {
             padding: 0px;
@@ -84,7 +85,7 @@
             <form class="abox4active" name="myform">
                 <input id="inputtext" type="text" name="username" placeholder="输入姓名" value="">
 
-                <select>
+                <select id="inputselect">
                     <option hidden>选择职业</option>  
                     <option>上班族</option>
                     <option>学生</option>
@@ -114,9 +115,9 @@
                         <td class="special" value="+" onclick="beanbackground2(this)">+</td>
                     </tr>
                     <tr>
-                        <td class="bean" value="100" onclick="beanbackground(this)">素食</td>
-                        <td class="bean" value="100" onclick="beanbackground(this)">米粉</td>
-                        <td class="bean" value="100" onclick="beanbackground(this)">煎饼</td>
+                        <td class="bean" id="b0" value="50" onclick="beanbackground(this)">素食</td>
+                        <td class="bean" id="b1" value="50" onclick="beanbackground(this)">米粉</td>
+                        <td class="bean" id="b2" value="50" onclick="beanbackground(this)">煎饼</td>
                         <td class="special" onclick="dy(this)"><span id="eq">=</span></td>
                     </tr>
                 </table>
@@ -124,8 +125,12 @@
         </div>
 
         <!--弹出层-->
-        <div id='newdiv'>
-            <p></p>
+        <div id="newdiv">
+            <p id="name1">姓名</p>
+            <p id="score1">分数</p>
+            <p id="eva">评价</p>
+            <p id="eva2">差</p>
+            <span id="evavalue">建议哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</span>
         </div>
     </div>
     <div id="fade" onclick="prepage()"></div>
@@ -227,16 +232,30 @@
                 pageNum++;
             }
             document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
-        }, 3500)
+        }, 500)
 
 
         //第四页
+
+        //点击这个按钮获取用户名和职业
+        var username,work,score;
         function toNext(){
+            username = document.getElementById('inputtext').value;
+            work = document.getElementById('inputselect').value;
+            
+            if(work == '学生'){
+                b0.innerHTML = '软糖';
+                b1.innerHTML = '雪糕';
+                b2.innerHTML = '辣条';
+            }else{
+                b0.innerHTML = '素食';
+                b1.innerHTML = '米粉';
+                b2.innerHTML = '煎饼';
+            }
             document.getElementsByClassName('abox4')[0].classList.add('active');
             document.getElementsByClassName('abox5')[0].classList.remove('active');
         }
 
-        var values;
         function beanbackground(e){
             // alert('value：' + e.attributes['value'].nodeValue);
             if(jp.innerHTML == '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算'){
@@ -265,15 +284,23 @@
             if(eq.innerHTML == '='){
                 if(eval(jp.innerHTML) >= 500){
                     source.innerHTML = '优';
+                    evavalue.innerHTML = '您的饮食习惯很好，加上适当的运动，身体会更棒。希望您继续保持哟';
                 }else if(eval(jp.innerHTML) >= 200){
                     source.innerHTML = '良';
+                    evavalue.innerHTML = '您的饮食习惯正常，还需多吃健康食品才能有足够精力工作学习哟！';
                 }else{
                     source.innerHTML = '差';
+                    evavalue.innerHTML = '您的饮食习惯欠佳，请多吃五谷杂粮，少吃零食快餐才行哟！';
                 }
                 eq.innerHTML = '我的健康报告';
+                score = eval(jp.innerHTML);
                 jp.innerHTML = jp.innerHTML + '=' + eval(jp.innerHTML);
-                
             }else{
+                name1.innerHTML = username;
+                score1.innerHTML = score;
+                eva.innerHTML = source.innerHTML;
+                eva2.innerHTML = source.innerHTML;
+                
                 document.getElementById('newdiv').style.display = 'block';
                 document.getElementById('newdiv').classList.add('newdivactive')
                 document.getElementById('fade').style.display = 'block';
@@ -282,6 +309,18 @@
         }
         //出现弹出层后点击任何位置返回上一页
         function prepage(){
+            jp.innerHTML = '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算';
+            source.innerHTML = '';
+            eq.innerHTML = '=';
+            var beans = document.getElementsByClassName('bean');
+            for(var i = 0;i < beans.length - 3;i++){
+                beans[i].classList.remove('abox5hoveractive');
+                beans[i].setAttribute('value',100);
+            }
+            for(var i = beans.length - 3;i < beans.length; i++){
+                beans[i].classList.remove('abox5hoveractive');
+                beans[i].setAttribute('value',50);
+            }
             document.getElementById('newdiv').style.display = 'none';
             document.getElementById('newdiv').classList.remove('newdivactive')
             document.getElementById('fade').style.display = 'none';
@@ -293,13 +332,16 @@
         function rm(){
             jp.innerHTML = '';
             source.innerHTML = '';
+            eq.innerHTML = '=';
             var beans = document.getElementsByClassName('bean');
-            for(var i = 0;i < beans.length;i++){
+            for(var i = 0;i < beans.length - 3;i++){
                 beans[i].classList.remove('abox5hoveractive');
                 beans[i].setAttribute('value',100);
             }
-
-           
+            for(var i = beans.length - 3;i < beans.length; i++){
+                beans[i].classList.remove('abox5hoveractive');
+                beans[i].setAttribute('value',50);
+            }
         }
     </script>
 
