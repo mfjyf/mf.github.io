@@ -12,45 +12,23 @@
     <link rel="stylesheet" href="css/box4.css">
     <link rel="stylesheet" href="css/box5.css">
     <link rel="stylesheet" href="css/newdiv.css">
-    <style>
-        * {
-            padding: 0px;
-            margin: 0px;
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            height: 100%;
-            width: 100%;
-        }
-
-        #bigbox {
-            height: 100%;
-            width: 100%;
-            position: relative;
-        }
-
-        .active {
-            z-index: -1;
-            opacity: 0;
-        }
-
-        /*************************************/
-
-
-       
-    </style>
+    <link rel="stylesheet" href="css/global.css">
 </head>
 
 <body>
+    <audio id="audio" controls="controls" loop="loop" hidden>
+        <source src="media/bgm.mp3" type="audio/mp3" />
+    </audio>
     <div id="bigbox">
+        <img class="music" onclick="closemusic()" src="img/音乐图标.png">
+        <img class="music1" onclick="openmusic()" src="img/暂停音乐图标.png">
         <div class="abox1">
             <img src="img/picture.png">
             <img src="img/logoing.png">
             <img src="img/点.png">
             <img src="img/点.png">
             <img src="img/点.png">
+            <p id="abox1p">0%</p>
         </div>
         <div class="box abox2 active">
             <img src="img/拖拉机.png">
@@ -66,7 +44,7 @@
             <img src="img/第六句.png" class="font">
             <img src="img/番薯和阴影.png">
             <p class="triangle v">v</p>
-            <p class="triangle">v</p>
+            <p class="triangle v1">v</p>
         </div>
         <div class="box abox3 active">
             <img class="abox3active" src="img/上人.png">
@@ -96,6 +74,10 @@
         </div>
 
         <div class="box abox5 active">
+            <audio id="audio2" controls="controls" hidden>
+                <source src="media/click.mp3" type="audio/mp3" />
+            </audio>
+            <p id="pre" onclick="topre()">&lt;</p>
             <div id="panel">
                 <p id="jp">请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算</p>
                 <p id="source"></p>
@@ -135,216 +117,7 @@
     </div>
     <div id="fade" onclick="prepage()"></div>
 
-    <script>
-        var pageNum = 1;
-        var pageTotal = 4;
-        var startY = 0,
-            endY = 0,
-            moveY = 0;
 
-        var boxs = document.getElementsByClassName("box");
-        // alert(boxs[0].attributes['class'].nodeValue)
-        for (var i = 0; i < boxs.length; i++) {
-
-            boxs[i].addEventListener('touchstart', function (e) {
-                startY = e.targetTouches[0].pageY;
-                console.log(startY)
-            }, false)
-
-            boxs[i].addEventListener('touchmove', function (e) {
-                e.preventDefault();
-                console.log(e.targetTouches[0].pageY)
-                endY = e.targetTouches[0].pageY
-            }, false)
-
-            if(boxs[i].className.indexOf('abox2') != -1){
-                boxs[i].addEventListener('touchend', function (e) {
-                    moveY = startY - endY;
-                    console.log(moveY);
-                    if (!(moveY == startY)) {
-                        if (moveY > 120) {
-                            console.log('下一页')
-                            document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
-
-                            var abox3s = document.getElementsByClassName('abox3active');
-                            for(var i = 0;i < abox3s.length;i++){
-                                abox3s[i].classList.add('toleft' + i);
-                            }
-
-                            var triangleTwos = document.getElementsByClassName('triangleTwo');
-                            for(var i = 0;i < triangleTwos.length;i++){
-                                triangleTwos[i].classList.add('tractive' + i);
-                            }
-
-                            if (!(pageNum >= pageTotal)) {
-                                pageNum++;
-                            }
-                            document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
-                        }
-                    } else {
-                        return;
-                    }
-                    startY = 0;
-                    endY = 0;
-                    moveY = 0;
-                }, false)
-            }else{
-                boxs[i].addEventListener('touchend', function (e) {
-                    moveY = startY - endY;
-                    console.log(moveY);
-                    if (!(moveY == startY)) {
-                        if (moveY > 120) {
-                            console.log('下一页')
-                            document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
-                            
-                            var abox4actives = document.getElementsByClassName('abox4active');
-                            for(var i = 0;i < abox4actives.length;i++){
-                                abox4actives[i].classList.add('box4active' + i);
-                            }
-
-                            if (!(pageNum >= pageTotal)) {
-                                pageNum++;
-                            }
-                            document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
-                        }
-                    } else {
-                        return;
-                    }
-                    startY = 0;
-                    endY = 0;
-                    moveY = 0;
-                }, false)
-            }
-            
-
-        }
-        setTimeout(function () {
-            document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
-            var fonts = document.getElementsByClassName('font');
-            for (var i = 0; i < fonts.length; i++) {
-                fonts[i].classList.add('fontactive' + i);
-            }
-            var vs = document.getElementsByClassName('triangle');
-            for (var i = 0; i < vs.length; i++) {
-                vs[i].classList.add('tractive' + i);
-            }
-            if (!(pageNum >= pageTotal)) {
-                pageNum++;
-            }
-            document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
-        }, 3500)
-
-
-        //第四页
-
-        //点击这个按钮获取用户名和职业
-        var username,work,score;
-        function toNext(){
-            username = document.getElementById('inputtext').value;
-            work = document.getElementById('inputselect').value;
-            
-            if(work == '学生'){
-                b0.innerHTML = '软糖';
-                b1.innerHTML = '雪糕';
-                b2.innerHTML = '辣条';
-            }else{
-                b0.innerHTML = '素食';
-                b1.innerHTML = '米粉';
-                b2.innerHTML = '煎饼';
-            }
-            document.getElementsByClassName('abox4')[0].classList.add('active');
-            document.getElementsByClassName('abox5')[0].classList.remove('active');
-        }
-
-        function beanbackground(e){
-            // alert('value：' + e.attributes['value'].nodeValue);
-            if(jp.innerHTML == '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算'){
-                jp.innerHTML = '';
-            }
-            jp.innerHTML += e.attributes['value'].nodeValue;
-            
-            e.classList.add('abox5hoveractive')
-            e.attributes['value'].nodeValue='';
-        }
-        function beanbackground2(e){
-            jp.innerHTML += e.attributes['value'].nodeValue;
-
-            //样式变化
-            e.classList.remove('special')
-            e.classList.add('abox5hoveractive')
-            setTimeout(() => {
-                e.classList.remove('abox5hoveractive')
-                e.classList.add('special')
-            }, 200);
-        }
-
-
-        // jg.innerHTML = eval(jg.innerHTML);
-        function dy(){
-            if(eq.innerHTML == '='){
-                if(eval(jp.innerHTML) >= 500){
-                    source.innerHTML = '优';
-                    evavalue.innerHTML = '您的饮食习惯很好，加上适当的运动，身体会更棒。希望您继续保持哟';
-                }else if(eval(jp.innerHTML) >= 200){
-                    source.innerHTML = '良';
-                    evavalue.innerHTML = '您的饮食习惯正常，还需多吃健康食品才能有足够精力工作学习哟！';
-                }else{
-                    source.innerHTML = '差';
-                    evavalue.innerHTML = '您的饮食习惯欠佳，请多吃五谷杂粮，少吃零食快餐才行哟！';
-                }
-                eq.innerHTML = '我的健康报告';
-                score = eval(jp.innerHTML);
-                jp.innerHTML = jp.innerHTML + '=' + eval(jp.innerHTML);
-            }else{
-                name1.innerHTML = username;
-                score1.innerHTML = score;
-                eva.innerHTML = source.innerHTML;
-                eva2.innerHTML = source.innerHTML;
-                
-                document.getElementById('newdiv').style.display = 'block';
-                document.getElementById('newdiv').classList.add('newdivactive')
-                document.getElementById('fade').style.display = 'block';
-                document.getElementById('fade').classList.add('newdivactive2')
-            }
-        }
-        //出现弹出层后点击任何位置返回上一页
-        function prepage(){
-            jp.innerHTML = '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算';
-            source.innerHTML = '';
-            eq.innerHTML = '=';
-            var beans = document.getElementsByClassName('bean');
-            for(var i = 0;i < beans.length - 3;i++){
-                beans[i].classList.remove('abox5hoveractive');
-                beans[i].setAttribute('value',100);
-            }
-            for(var i = beans.length - 3;i < beans.length; i++){
-                beans[i].classList.remove('abox5hoveractive');
-                beans[i].setAttribute('value',50);
-            }
-            document.getElementById('newdiv').style.display = 'none';
-            document.getElementById('newdiv').classList.remove('newdivactive')
-            document.getElementById('fade').style.display = 'none';
-            document.getElementById('fade').classList.remove('newdivactive2')
-            document.getElementsByClassName('abox5')[0].classList.add('active');
-            document.getElementsByClassName('abox4')[0].classList.remove('active');
-        }
-
-        function rm(){
-            jp.innerHTML = '';
-            source.innerHTML = '';
-            eq.innerHTML = '=';
-            var beans = document.getElementsByClassName('bean');
-            for(var i = 0;i < beans.length - 3;i++){
-                beans[i].classList.remove('abox5hoveractive');
-                beans[i].setAttribute('value',100);
-            }
-            for(var i = beans.length - 3;i < beans.length; i++){
-                beans[i].classList.remove('abox5hoveractive');
-                beans[i].setAttribute('value',50);
-            }
-        }
-    </script>
-
+    <script src="js/box.js"></script>
 </body>
-
 </html>

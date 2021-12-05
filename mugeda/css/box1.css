@@ -29,7 +29,7 @@
     top: 430.5px;
     left: 268.5px;
     animation-name: loading;   
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     animation-iteration-count: infinite;
 }
 .abox1 img:nth-child(5){
@@ -37,7 +37,7 @@
     top: 430.5px;
     left: 283.5px;
     animation-name: loading2;   
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     animation-iteration-count: infinite;
 }
 @keyframes loading {
@@ -53,4 +53,13 @@
     50% {opacity: 1;}
     75% {opacity: 1;}
     100% {opacity: 0;}
+}
+
+.abox1 p{
+    position: absolute;
+    top: 460px;
+    left: 160px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: '楷体';
 }
