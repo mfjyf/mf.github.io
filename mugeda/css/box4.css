@@ -95,19 +95,48 @@
 .box4active4{
     animation: rightbox4four 1s linear 3.2s forwards;
 }
-.abox4 select{
+#inputselect{
     list-style-type: none;
     position: absolute;
+    width: 120px;
+    height: 120px;
+    font-family: 楷体;
+    font-size: 20px;
+    color: rgb(170, 170, 170);
+    top: 413px;
+    left: 200px;
+}
+#inputselect li:nth-child(3){
     width: 120px;
     height: 40px;
     border: 2px black solid;
     border-radius: 10px;
     font-family: 楷体;
     font-size: 20px;
+    background: white;
     color: rgb(170, 170, 170);
-    top: 500px;
-    left: 200px;
     box-shadow: 5px 10px rgb(228, 228, 228);
+    line-height: 40px;
+}
+#inputselect li:nth-child(2){
+    width: 100px;
+    margin-left: 10px;
+    border: 2px black solid;
+    box-shadow: 5px 10px rgb(228, 228, 228);
+    line-height: 40px;
+    background: white;
+    text-align: center;
+    opacity: 0;
+}
+#inputselect li:nth-child(1){
+    width: 100px;
+    margin-left: 10px;
+    background: white;
+    border: 2px black solid;
+    box-shadow: 5px 10px rgb(228, 228, 228);
+    line-height: 40px;
+    text-align: center;
+    opacity: 0;
 }
 .abox4 img:last-child{
     position: absolute;
@@ -119,4 +148,18 @@
 }
 .box4active5{
     animation: rightbox4four 1s linear 4s forwards;
+}
+
+
+#a1 img{
+    position: absolute;
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+    z-index: 5;
+    top: 97px;
+    left: 90px;
+}
+.a1active{
+    transform: rotate(180deg);
 }

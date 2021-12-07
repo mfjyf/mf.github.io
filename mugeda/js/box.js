@@ -52,7 +52,6 @@ for (var i = 0; i < boxs.length; i++) {
     }, false)
 
     boxs[i].addEventListener('touchmove', function (e) {
-        e.preventDefault();
         console.log(e.targetTouches[0].pageY)
         endY = e.targetTouches[0].pageY
     }, false)
@@ -61,26 +60,24 @@ for (var i = 0; i < boxs.length; i++) {
         boxs[i].addEventListener('touchend', function (e) {
             moveY = startY - endY;
             console.log(moveY);
-            if (!(moveY == startY)) {
-                if (moveY > 120) {
-                    console.log('下一页')
-                    document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
+            if (!(moveY == startY) && moveY > 120) {
+                console.log('下一页')
+                document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
 
-                    var abox3s = document.getElementsByClassName('abox3active');
-                    for(var i = 0;i < abox3s.length;i++){
-                        abox3s[i].classList.add('toleft' + i);
-                    }
-
-                    var triangleTwos = document.getElementsByClassName('triangleTwo');
-                    for(var i = 0;i < triangleTwos.length;i++){
-                        triangleTwos[i].classList.add('tractive' + i);
-                    }
-
-                    if (!(pageNum >= pageTotal)) {
-                        pageNum++;
-                    }
-                    document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
+                var abox3s = document.getElementsByClassName('abox3active');
+                for(var i = 0;i < abox3s.length;i++){
+                    abox3s[i].classList.add('toleft' + i);
                 }
+
+                var triangleTwos = document.getElementsByClassName('triangleTwo');
+                for(var i = 0;i < triangleTwos.length;i++){
+                    triangleTwos[i].classList.add('tractive' + i);
+                }
+
+                if (!(pageNum >= pageTotal)) {
+                    pageNum++;
+                }
+                document.getElementsByClassName('abox' + pageNum)[0].classList.remove('active');
             } else {
                 return;
             }
@@ -121,22 +118,32 @@ for (var i = 0; i < boxs.length; i++) {
 //第四页
 
 //点击这个按钮获取用户名和职业
-var username,work,score;
+var username,work,score,username2,work2;
 function toNext(){
     username = document.getElementById('inputtext').value;
     work = document.getElementById('inputselect').value;
-    
-    if(work == '学生'){
-        b0.innerHTML = '软糖';
-        b1.innerHTML = '雪糕';
-        b2.innerHTML = '辣条';
+
+    if(username.length == 0){
+        alert("请输入姓名")
+    }else if(username.length == 1 || username.length > 4){
+        alert("昵称字符2-4")
+    }else if(username == '' && work == '选择职业'){
+        alert("请输入姓名并选择职业！");
     }else{
-        b0.innerHTML = '素食';
-        b1.innerHTML = '米粉';
-        b2.innerHTML = '煎饼';
+        if(work == '学生'){
+            b0.innerHTML = '软糖';
+            b1.innerHTML = '雪糕';
+            b2.innerHTML = '辣条';
+        }else{
+            b0.innerHTML = '素食';
+            b1.innerHTML = '米粉';
+            b2.innerHTML = '煎饼';
+        }
+        document.getElementsByClassName('abox4')[0].classList.add('active');
+        document.getElementsByClassName('abox5')[0].classList.remove('active');
     }
-    document.getElementsByClassName('abox4')[0].classList.add('active');
-    document.getElementsByClassName('abox5')[0].classList.remove('active');
+    username2 = username;
+    work2 = work;
 }
 
 function topre(){
@@ -170,7 +177,24 @@ function beanbackground2(e){
         e.classList.add('special')
     }, 200);
 }
+function beanbackgroundadd(e){
+    document.getElementById('audio2').play();
 
+    if(jp.innerHTML == '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算'){
+        jp.innerHTML = '';
+    }
+    if(jp.innerHTML.charAt(jp.innerHTML.length - 1).indexOf("+") == -1 && jp.innerHTML != ""){
+        jp.innerHTML += e.attributes['value'].nodeValue;
+    }
+
+    //样式变化
+    e.classList.remove('special')
+    e.classList.add('abox5hoveractive')
+    setTimeout(() => {
+        e.classList.remove('abox5hoveractive')
+        e.classList.add('special')
+    }, 200);
+}
 
 // jg.innerHTML = eval(jg.innerHTML);
 function dy(){
@@ -253,4 +277,30 @@ function closemusic(){
     document.getElementById('audio').pause();
     document.getElementsByClassName('music1')[0].style.display = 'block';
     document.getElementsByClassName('music')[0].style.display = 'none';
+}
+
+function up(){
+    var a1 = document.getElementById('a1')
+    var a2 = document.getElementById('a2')
+    var a3 = document.getElementById('a3')
+    
+    if(a1.getAttribute('value') == '0'){
+        a2.style.opacity = '1';
+        a3.style.opacity = '1';
+        a1.setAttribute('value','1')
+        document.getElementById('a1img').classList.add('a1active')
+    }else{
+        a2.style.opacity = '0';
+        a3.style.opacity = '0';
+        a1.setAttribute('value','0')
+        document.getElementById('a1img').classList.remove('a1active')
+    }
+}
+function is(){
+    a1.innerHTML = a2.innerHTML +"<img id='a1img' src='img/箭头.png'>"
+    up();
+}
+function is2(){
+    a1.innerHTML = a3.innerHTML+"<img id='a1img' src='img/箭头.png'>"
+    up();
 }
