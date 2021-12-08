@@ -43,16 +43,14 @@
             <img src="img/第五句.png" class="font">
             <img src="img/第六句.png" class="font">
             <img src="img/番薯和阴影.png">
-            <p class="triangle v">v</p>
-            <p class="triangle v1">v</p>
+            <img class="triangle" src="img/下滑图标.png">
         </div>
         <div class="box abox3 active">
             <img class="abox3active" src="img/上人.png">
             <img class="abox3active" src="img/上话.png">
             <img class="abox3active" src="img/下人.png">
             <img class="abox3active" src="img/下话.png">
-            <p class="triangleTwo v1">v</p>
-            <p class="triangleTwo v2">v</p>
+            <img class="triangleTwo" src="img/下滑图标.png">
         </div> 
         <div class="box abox4 active">
             <img src="img/4圆.png">
@@ -64,13 +62,13 @@
                 <input id="inputtext" type="text" name="username" placeholder="输入姓名" value="">
 
                 <ul id="inputselect">
-                    <li id="a3" value="0" onclick="is2()">上班族</li>
-                    <li id="a2" value="0" onclick="is()">学生</li>
-                    <li id="a1" value="0" onclick="up()">选择职业<img id="a1img" src="img/箭头.png"></li>
+                    <li id="a3" value="0" onclick="is2(this)">上班族</li>
+                    <li id="a2" value="0" onclick="is(this)">学生</li>
+                    <li id="a1" value="0" onclick="up()"><span id="a1p">选择职业</span><img id="a1img" src="img/箭头.png"></li>
                 </ul>
                
             </form>
-            <img onclick="toNext()" class="abox4active" src="img/4按钮.png">
+            <img onclick="toNext()" id="inputpre" iscount="0" class="abox4active" src="img/4按钮.png">
         </div>
 
         <div class="box abox5 active">
@@ -94,13 +92,13 @@
                         <td class="bean" value="100" onclick="beanbackground(this)">稻子</td>
                         <td class="bean" value="100" onclick="beanbackground(this)">玉米</td>
                         <td class="bean" value="100" onclick="beanbackground(this)">黑豆</td>
-                        <td class="special" value="+" onclick="beanbackgroundadd(this)">+</td>
+                        <td class="special" value="+" onclick="beanbackgroundadd(this)"><span id="add">+</span></td>
                     </tr>
                     <tr>
                         <td class="bean" id="b0" value="50" onclick="beanbackground(this)">素食</td>
                         <td class="bean" id="b1" value="50" onclick="beanbackground(this)">米粉</td>
                         <td class="bean" id="b2" value="50" onclick="beanbackground(this)">煎饼</td>
-                        <td class="special" onclick="dy(this)"><span id="eq">=</span></td>
+                        <td class="special" isno="0" onclick="dy(this)"><span id="eq">=</span></td>
                     </tr>
                 </table>
             </div>

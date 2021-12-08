@@ -31,7 +31,7 @@ function timedCount(num){
             abox1p.innerHTML = num + '%';
             var t = setTimeout(() => {
                 timedCount(num);
-            }, 200);
+            }, 10);
         }
     }
 }
@@ -121,29 +121,82 @@ for (var i = 0; i < boxs.length; i++) {
 var username,work,score,username2,work2;
 function toNext(){
     username = document.getElementById('inputtext').value;
-    work = document.getElementById('inputselect').value;
-
+    work = a1p.innerHTML;
     if(username.length == 0){
         alert("请输入姓名")
     }else if(username.length == 1 || username.length > 4){
         alert("昵称字符2-4")
-    }else if(username == '' && work == '选择职业'){
-        alert("请输入姓名并选择职业！");
+    }else if(work == '选择职业'){
+        alert("请选择职业！");
     }else{
-        if(work == '学生'){
-            b0.innerHTML = '软糖';
-            b1.innerHTML = '雪糕';
-            b2.innerHTML = '辣条';
+        var count = document.getElementById('inputpre').getAttribute('iscount');
+        if(count == '0'){
+            if(work == '学生'){
+                b0.innerHTML = '软糖';
+                b1.innerHTML = '雪糕';
+                b2.innerHTML = '辣条';
+            }else{
+                b0.innerHTML = '素食';
+                b1.innerHTML = '米粉';
+                b2.innerHTML = '煎饼';
+            }
+    
+            username2 = username;
+            work2 = work;
+    
+            document.getElementById('inputpre').setAttribute('iscount','1');
+            document.getElementsByClassName('abox4')[0].classList.add('active');
+            document.getElementsByClassName('abox5')[0].classList.remove('active');
+            
         }else{
-            b0.innerHTML = '素食';
-            b1.innerHTML = '米粉';
-            b2.innerHTML = '煎饼';
+            if(username != username2 || work != work2){
+                jp.innerHTML = '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算';
+                source.innerHTML = '';
+                eq.innerHTML = '=';
+                var beans = document.getElementsByClassName('bean');
+                for(var i = 0;i < beans.length - 3;i++){
+                    beans[i].classList.remove('abox5hoveractive');
+                    beans[i].setAttribute('value',100);
+                }
+                for(var i = beans.length - 3;i < beans.length; i++){
+                    beans[i].classList.remove('abox5hoveractive');
+                    beans[i].setAttribute('value',50);
+                }
+                document.getElementsByClassName('special')[2].setAttribute('isno','0')
+                if(work == '学生'){
+                    b0.innerHTML = '软糖';
+                    b1.innerHTML = '雪糕';
+                    b2.innerHTML = '辣条';
+                }else{
+                    b0.innerHTML = '素食';
+                    b1.innerHTML = '米粉';
+                    b2.innerHTML = '煎饼';
+                }
+                document.getElementsByClassName('abox4')[0].classList.add('active');
+                document.getElementsByClassName('abox5')[0].classList.remove('active');
+
+                username2 = username;
+                work2 = work;
+            }else{
+                if(work == '学生'){
+                    b0.innerHTML = '软糖';
+                    b1.innerHTML = '雪糕';
+                    b2.innerHTML = '辣条';
+                }else{
+                    b0.innerHTML = '素食';
+                    b1.innerHTML = '米粉';
+                    b2.innerHTML = '煎饼';
+                }
+                document.getElementsByClassName('abox4')[0].classList.add('active');
+                document.getElementsByClassName('abox5')[0].classList.remove('active');
+
+                username2 = username;
+                work2 = work;
+            }
         }
-        document.getElementsByClassName('abox4')[0].classList.add('active');
-        document.getElementsByClassName('abox5')[0].classList.remove('active');
+        
     }
-    username2 = username;
-    work2 = work;
+   
 }
 
 function topre(){
@@ -152,71 +205,75 @@ function topre(){
 }
 
 function beanbackground(e){
+    if(document.getElementsByClassName('special')[2].getAttribute('isno') == 0){
 
-    document.getElementById('audio2').play();
+        document.getElementById('audio2').play();
 
-    if(jp.innerHTML == '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算'){
-        jp.innerHTML = '';
+        if(jp.innerHTML == '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算'){
+            jp.innerHTML = '';
+        }
+        jp.innerHTML += e.attributes['value'].nodeValue;
+        
+        e.classList.add('abox5hoveractive')
+        e.attributes['value'].nodeValue='';
+
+        document.getElementById('add').classList.add('addbig');
+        setTimeout(() => {
+            document.getElementById('add').classList.remove('addbig');
+        }, 1000);
     }
-    jp.innerHTML += e.attributes['value'].nodeValue;
-    
-    e.classList.add('abox5hoveractive')
-    e.attributes['value'].nodeValue='';
-}
-function beanbackground2(e){
-
-    document.getElementById('audio2').play();
-
-    jp.innerHTML += e.attributes['value'].nodeValue;
-
-    //样式变化
-    e.classList.remove('special')
-    e.classList.add('abox5hoveractive')
-    setTimeout(() => {
-        e.classList.remove('abox5hoveractive')
-        e.classList.add('special')
-    }, 200);
 }
 function beanbackgroundadd(e){
-    document.getElementById('audio2').play();
+    if(document.getElementsByClassName('special')[2].getAttribute('isno') == 0){
 
-    if(jp.innerHTML == '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算'){
-        jp.innerHTML = '';
-    }
-    if(jp.innerHTML.charAt(jp.innerHTML.length - 1).indexOf("+") == -1 && jp.innerHTML != ""){
-        jp.innerHTML += e.attributes['value'].nodeValue;
-    }
+        document.getElementById('audio2').play();
 
-    //样式变化
-    e.classList.remove('special')
-    e.classList.add('abox5hoveractive')
-    setTimeout(() => {
-        e.classList.remove('abox5hoveractive')
-        e.classList.add('special')
-    }, 200);
+        if(jp.innerHTML == '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算'){
+            jp.innerHTML = '';
+        }
+        if(jp.innerHTML.charAt(jp.innerHTML.length - 1).indexOf("+") == -1 && jp.innerHTML != ""){
+            jp.innerHTML += e.attributes['value'].nodeValue;
+        }
+
+        //样式变化
+        e.classList.remove('special')
+        e.classList.add('abox5hoveractive')
+        setTimeout(() => {
+            e.classList.remove('abox5hoveractive')
+            e.classList.add('special')
+        }, 200);
+    }
 }
 
-// jg.innerHTML = eval(jg.innerHTML);
 function dy(){
 
     document.getElementById('audio2').play();
-
+    // var beans = document.getElementsByClassName('bean');
     if(eq.innerHTML == '='){
+        
         if(eval(jp.innerHTML) == undefined){
             jp.innerHTML = '请点击按键<br>&nbsp;&nbsp;&nbsp;开始计算';
         }else if(eval(jp.innerHTML) >= 500){
+
             source.innerHTML = '优';
             evavalue.innerHTML = '您的饮食习惯很好，加上适当的运动，身体会更棒。希望您继续保持哟';
             eq.innerHTML = '我的健康报告';
             score = eval(jp.innerHTML);
             jp.innerHTML = jp.innerHTML + '=' + eval(jp.innerHTML);
+
+            document.getElementsByClassName('special')[2].setAttribute('isno','1');
+            
         }else if(eval(jp.innerHTML) >= 200){
+
             source.innerHTML = '良';
             evavalue.innerHTML = '您的饮食习惯正常，还需多吃健康食品才能有足够精力工作学习哟！';
             eq.innerHTML = '我的健康报告';
             score = eval(jp.innerHTML);
             jp.innerHTML = jp.innerHTML + '=' + eval(jp.innerHTML);
+
+            document.getElementsByClassName('special')[2].setAttribute('isno','1');
         }else{
+
             source.innerHTML = '差';
             evavalue.innerHTML = '您的饮食习惯欠佳，请多吃五谷杂粮，少吃零食快餐才行哟！';
             eq.innerHTML = '我的健康报告';
@@ -237,6 +294,8 @@ function dy(){
         document.getElementById('fade').classList.add('newdivactive2')
     }
 }
+
+
 //出现弹出层后点击任何位置使他消失
 function prepage(){
     document.getElementById('newdiv').style.display = 'none';
@@ -260,12 +319,16 @@ function rm(e){
         beans[i].classList.remove('abox5hoveractive');
         beans[i].setAttribute('value',50);
     }
+
+    document.getElementsByClassName('special')[2].setAttribute('isno','0')
+
     e.classList.remove('special')
     e.classList.add('abox5hoveractive')
     setTimeout(() => {
         e.classList.remove('abox5hoveractive')
         e.classList.add('special')
     }, 200);
+
 }
 
 function openmusic(){
@@ -296,11 +359,16 @@ function up(){
         document.getElementById('a1img').classList.remove('a1active')
     }
 }
-function is(){
-    a1.innerHTML = a2.innerHTML +"<img id='a1img' src='img/箭头.png'>"
-    up();
+function is(e){
+    if(e.style.opacity != 0){
+        a1p.innerHTML = a2.innerHTML
+        up();
+    }
+   
 }
-function is2(){
-    a1.innerHTML = a3.innerHTML+"<img id='a1img' src='img/箭头.png'>"
-    up();
+function is2(e){
+    if(e.style.opacity != 0){
+        a1p.innerHTML = a3.innerHTML
+        up();
+    }
 }

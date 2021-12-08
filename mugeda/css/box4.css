@@ -127,6 +127,7 @@
     background: white;
     text-align: center;
     opacity: 0;
+    
 }
 #inputselect li:nth-child(1){
     width: 100px;

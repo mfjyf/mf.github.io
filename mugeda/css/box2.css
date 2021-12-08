@@ -136,39 +136,20 @@
 }
 
 
-.v{
+.triangle{
     width: 50px;
     height: 50px;
     position: absolute;
-    font-size: 50px;
     z-index: 5;
     color: red;
     bottom: 25px;
     left: 172.5px;
     opacity: 0;
 }
-.v1{
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    font-size: 50px;
-    z-index: 5;
-    color: red;
-    bottom: 50px;
-    left: 172.5px;
-    opacity: 0;
-}
 .tractive0{
     animation: triangle 1s linear 4s infinite;
-}
-.tractive1{
-    animation: triangle2 1s linear 4s infinite;
 }
 @keyframes triangle {
     0% {bottom: 25px;opacity: 1;}
     100%{bottom: 0px;opacity: 0;}
-}
-@keyframes triangle2 {
-    0% {bottom: 50px;opacity: 1;}
-    100%{bottom: 25px;opacity: 0;}
 }
