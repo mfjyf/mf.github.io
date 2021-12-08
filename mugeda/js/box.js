@@ -31,7 +31,7 @@ function timedCount(num){
             abox1p.innerHTML = num + '%';
             var t = setTimeout(() => {
                 timedCount(num);
-            }, 10);
+            }, 200);
         }
     }
 }
