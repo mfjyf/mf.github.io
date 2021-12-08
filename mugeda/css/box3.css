@@ -6,11 +6,13 @@
     transition: opacity 1s;
 }
 .abox3 img:nth-child(1){
+    position: absolute;
     width: 375px;
     height: auto;
-    position: absolute;
     overflow: hidden;
     right: -100%;
+    top: 0px;
+    display: none;
 }
 .toleft0{
     animation: left 0.8s linear forwards;

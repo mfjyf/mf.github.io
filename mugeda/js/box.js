@@ -65,6 +65,7 @@ for (var i = 0; i < boxs.length; i++) {
                 document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
 
                 var abox3s = document.getElementsByClassName('abox3active');
+                abox3s[0].style.display = 'block';
                 for(var i = 0;i < abox3s.length;i++){
                     abox3s[i].classList.add('toleft' + i);
                 }
@@ -95,6 +96,7 @@ for (var i = 0; i < boxs.length; i++) {
                     document.getElementsByClassName('abox' + pageNum)[0].classList.add('active');
                     
                     var abox4actives = document.getElementsByClassName('abox4active');
+                    abox4actives[1].style.display = 'block';
                     for(var i = 0;i < abox4actives.length;i++){
                         abox4actives[i].classList.add('box4active' + i);
                     }

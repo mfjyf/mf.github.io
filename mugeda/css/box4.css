@@ -20,7 +20,6 @@
     /* left: 45px; */
     left: -100%;
     overflow: hidden;
-    
 }
 .box4active0{
     animation: rightbox4one 0.8s linear forwards;
@@ -35,9 +34,9 @@
     width: 200px;
     height: 120px;
     top: 240px;
-    /* left: 105px; */
     left: 100%;
     z-index: 5;
+    display: none;
 }
 .box4active1{
     animation: rightbox4two 0.8s linear 0.8s forwards;
