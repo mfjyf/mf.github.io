@@ -4,6 +4,7 @@
     background-image: url(../img/bg.png);
     position: absolute;
     transition: opacity 1s;
+    overflow: hidden;
 }
 .abox4 img:nth-child(1){
     position: absolute;
@@ -149,7 +150,6 @@
 .box4active5{
     animation: rightbox4four 1s linear 4s forwards;
 }
-
 
 #a1 img{
     position: absolute;

@@ -4,12 +4,13 @@
     background-image: url(../img/bg.png);
     position: absolute;
     transition: opacity 1s;
+    overflow: hidden;
 }
 .abox3 img:nth-child(1){
     position: absolute;
     width: 375px;
     height: auto;
-    overflow: hidden;
+    
     right: -100%;
     top: 0px;
     display: none;

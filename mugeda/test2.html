@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        #container{
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        #bigbox{
+            height: 100%;
+            width: 100%;
+            transition: all 1s;
+        }
+        .abox1{
+            height: 100%;
+            width: 100%;
+            background-color: blue;
+        }
+        .abox2{
+            height: 100%;
+            width: 100%;
+            background-color: #29c27b;
+        }
+        .abox3{
+            height: 100%;
+            width: 100%;
+            background-color: rgb(221, 127, 39);
+        }
+        .abox4{
+            height: 100%;
+            width: 100%;
+            background-color: rgb(219, 27, 171);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="bigbox">
+            <div class="box abox1"></div>
+            <div class="box abox2"></div>
+            <div class="box abox3"></div>
+            <div class="box abox4"></div>
+        </div>
+    </div>
+
+    <script>
+        var startY,endY,move,pageNum=1,pageTotal=document.getElementsByClassName('box').length,height=document.getElementById('bigbox').clientHeight;
+        document.getElementById('container').addEventListener('touchstart',function(e){
+            startY = e.targetTouches[0].pageY;
+        })
+        document.getElementById('container').addEventListener('touchmove',function(e){
+            endY = e.targetTouches[0].pageY;
+        })
+        document.getElementById('container').addEventListener('touchend',function(e){
+            if(endY < startY){
+                if(pageNum < pageTotal){
+                    document.getElementById('bigbox').style.transform = 'translateY(-' + pageNum * height + 'px)';
+                    move = pageNum * height;
+                    pageNum++;
+                }
+            }else{
+                
+                if(pageNum != 1){
+                    console.log('上一页')
+                    document.getElementById('bigbox').style.transform = 'translateY(-' + (move - height) + 'px)';
+                    move = move - height;
+                    pageNum--;
+                }
+            }
+        })
+
+    </script>
+
+</body>
+</html>

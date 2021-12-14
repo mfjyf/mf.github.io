@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #container{
+            width: 200%;
+            height: 100%;
+            
+        }
+        #bigbox{
+            width: 200%;
+            height: 100%;
+            display: flex;
+            transition: all 1s;
+        }
+        .box1{
+            width: 100%;
+            background-color: blue;
+        }
+        .box2{
+            width: 100%;
+            background-color: rgb(36, 219, 118);
+        }
+        .box3{
+            width: 100%;
+            background-color: rgb(206, 54, 92);
+        }
+        .box4{
+            width: 100%;
+            background-color: rgb(230, 137, 31);
+        }
+        .active0{
+            animation: rota 1s infinite 1s linear;
+        }
+        @keyframes rota {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <div id="bigbox">
+            <div class="box box1 s">
+                
+
+            </div>
+            <div class="box box2" style="position: relative;">
+                <img class="sbox2 box2active0" src="img/右轮.png">
+            </div>
+
+
+            <div class="box box3">
+                <img class="sbox3 box3active0" src="img/右轮.png">
+            </div>
+
+
+            <div class="box box4"></div>
+        </div>
+    </div>
+
+    <script>
+        var starX,endX,move,pageTotal = 4,pageNum = 1,width = document.getElementsByClassName('box1')[0].clientWidth;
+
+
+        document.getElementById('container').addEventListener('touchstart',function(e){
+            console.log(e.targetTouches[0].pageX);
+            starX = e.targetTouches[0].pageX;
+        })
+
+        document.getElementById('container').addEventListener('touchmove',function(e){
+            endX = e.targetTouches[0].pageX;
+        })
+
+        document.getElementById('container').addEventListener('touchend',function(e){
+            if(endX < starX){
+                if(pageNum < pageTotal){
+                    document.getElementById('bigbox').style.transform = 'translateX(-'+ width * pageNum +'px)'
+                    document.getElementsByClassName('box'+pageNum)[0].classList.remove('s');
+                    move = width * pageNum;
+                    pageNum++;
+                    document.getElementsByClassName('box'+pageNum)[0].classList.add('s');
+
+                    var boxs = document.getElementsByClassName('box');
+
+                    for(var i = 0;i < boxs.length;i++){
+                        if(boxs[i].className.indexOf('s') != -1){
+                            var sboxs = document.getElementsByClassName('sbox'+pageNum);
+                            for(var j = 0;j < sboxs.length;j++){
+                                document.getElementsByClassName('box'+pageNum+'active'+j)[0].classList.add('active' + j)
+
+                            }
+                        }
+                        
+                    }
+
+                }
+             
+            }else{
+                if(pageNum > 1){
+                    document.getElementById('bigbox').style.transform = 'translateX(-'+ (move - width) +'px)'
+                    move -= width;
+                    pageNum--;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
